@@ -2,10 +2,13 @@ const express = require('express')
 const app = express()
 const db = require('./app/config/database')
 const middleware = require('./app/middleware/middleware')
+const route = require('./routes/routes')
 
 Object.values(middleware).forEach(
     mw => app.use(mw)
 )
+
+app.use('/' , route);
 
 db.connect.then(() => {
         // throw new Error('Forcing catch block to execute.');
